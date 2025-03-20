@@ -1,37 +1,73 @@
-// Handle file upload and display content
+// Load Monaco Editor
+require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs' }});
+require(["vs/editor/editor.main"], function() {
+    window.editor = monaco.editor.create(document.getElementById("editorContainer"), {
+        value: "// Upload a file to start editing...",
+        language: "xml",
+        theme: "vs-dark",
+        automaticLayout: true
+    });
+});
+
+// Handle File Upload & Editing
 document.getElementById("fileInput").addEventListener("change", function(event) {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
             const content = e.target.result;
-            const textarea = document.createElement("textarea");
-            textarea.value = content;
+            const extension = file.name.split('.').pop().toLowerCase();
+            
+            // Set the correct language
+            let language = "plaintext";
+            if (extension === "xml") language = "xml";
+            else if (extension === "json") language = "json";
 
-            // Clear previous content
-            document.getElementById("fileContent").innerHTML = "";
-            document.getElementById("fileContent").appendChild(textarea);
+            // Set Monaco Editor Content
+            window.editor.setValue(content);
+            monaco.editor.setModelLanguage(window.editor.getModel(), language);
 
-            // Save Button
-            const saveButton = document.createElement("button");
-            saveButton.textContent = "Save File";
-            saveButton.onclick = function() {
-                const blob = new Blob([textarea.value], { type: "text/plain" });
-                const a = document.createElement("a");
-                a.href = URL.createObjectURL(blob);
-                a.download = file.name;
-                a.click();
-            };
-            document.getElementById("fileContent").appendChild(saveButton);
+            // Validate file content
+            validateFile(content, language);
         };
         reader.readAsText(file);
     }
 });
 
-// Function to change background image
-function setBackground() {
-    const imageUrl = document.getElementById("bgInput").value;
-    if (imageUrl) {
-        document.body.style.backgroundImage = `url('${imageUrl}')`;
+// Handle Save File
+document.getElementById("saveButton").addEventListener("click", function() {
+    const content = window.editor.getValue();
+    const blob = new Blob([content], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "edited_file.txt";
+    a.click();
+});
+
+// File Validation for XML & JSON
+function validateFile(content, language) {
+    let errorMessage = "";
+
+    try {
+        if (language === "json") {
+            JSON.parse(content);
+        } else if (language === "xml") {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(content, "application/xml");
+            if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
+                errorMessage = "Error: Invalid XML structure.";
+            }
+        }
+    } catch (e) {
+        errorMessage = `Error: ${e.message}`;
+    }
+
+    // Show error message if validation fails
+    const errorContainer = document.getElementById("errorContainer");
+    if (errorMessage) {
+        errorContainer.style.display = "block";
+        errorContainer.textContent = errorMessage;
+    } else {
+        errorContainer.style.display = "none";
     }
 }

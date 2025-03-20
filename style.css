@@ -2,8 +2,6 @@
 body {
     font-family: 'Arial', sans-serif;
     text-align: center;
-    background: url('https://i.imgur.com/0SUP1i6.jpg') no-repeat center center fixed;
-    background-size: cover;
     color: white;
     margin: 0;
     padding: 0;
@@ -12,6 +10,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-size: cover;
+    background-position: center;
 }
 
 /* Input & Buttons */

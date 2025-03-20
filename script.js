@@ -1,3 +1,7 @@
+// Set the background image URL in the script directly
+const backgroundImageUrl = 'https://i.imgur.com/0SUP1i6.jpg';
+document.body.style.backgroundImage = `url('${backgroundImageUrl}')`;
+
 // Load Monaco Editor
 require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs' }});
 require(["vs/editor/editor.main"], function() {
@@ -43,14 +47,6 @@ document.getElementById("saveButton").addEventListener("click", function() {
     a.download = "edited_file.txt";
     a.click();
 });
-
-// Function to Set Background Image URL
-function setBackground() {
-    const imageUrl = document.getElementById("bgInput").value;
-    if (imageUrl) {
-        document.body.style.backgroundImage = `url('${imageUrl}')`;
-    }
-}
 
 // File Validation for XML & JSON (Error Handling)
 function validateFile(content, language) {

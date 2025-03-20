@@ -11,12 +11,18 @@
 <body>
     <h1>DayZ Multi-Tool</h1>
 
+    <!-- Background Image URL Input -->
+    <input type="text" id="bgInput" placeholder="Enter Background Image URL">
+    <button onclick="setBackground()">Set Background</button>
+
     <!-- File Upload -->
     <input type="file" id="fileInput">
     <button id="saveButton">Save File</button>
 
-    <!-- Code Editor -->
+    <!-- Monaco Code Editor Container -->
     <div id="editorContainer"></div>
+
+    <!-- Error Container -->
     <div id="errorContainer"></div>
 
     <script src="script.js"></script>

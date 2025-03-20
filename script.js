@@ -3,7 +3,7 @@ require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-e
 require(["vs/editor/editor.main"], function() {
     window.editor = monaco.editor.create(document.getElementById("editorContainer"), {
         value: "// Upload a file to start editing...",
-        language: "xml",
+        language: "plaintext",
         theme: "vs-dark",
         automaticLayout: true
     });
@@ -17,8 +17,8 @@ document.getElementById("fileInput").addEventListener("change", function(event) 
         reader.onload = function(e) {
             const content = e.target.result;
             const extension = file.name.split('.').pop().toLowerCase();
-            
-            // Set the correct language
+
+            // Set the correct language for syntax highlighting
             let language = "plaintext";
             if (extension === "xml") language = "xml";
             else if (extension === "json") language = "json";
@@ -27,7 +27,7 @@ document.getElementById("fileInput").addEventListener("change", function(event) 
             window.editor.setValue(content);
             monaco.editor.setModelLanguage(window.editor.getModel(), language);
 
-            // Validate file content
+            // Validate file content (XML/JSON)
             validateFile(content, language);
         };
         reader.readAsText(file);
@@ -44,7 +44,15 @@ document.getElementById("saveButton").addEventListener("click", function() {
     a.click();
 });
 
-// File Validation for XML & JSON
+// Function to Set Background Image URL
+function setBackground() {
+    const imageUrl = document.getElementById("bgInput").value;
+    if (imageUrl) {
+        document.body.style.backgroundImage = `url('${imageUrl}')`;
+    }
+}
+
+// File Validation for XML & JSON (Error Handling)
 function validateFile(content, language) {
     let errorMessage = "";
 

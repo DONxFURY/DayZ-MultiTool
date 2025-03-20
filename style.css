@@ -46,9 +46,9 @@ button:hover {
 #editorContainer {
     width: 80%;
     height: 400px;
-    border-radius: 10px;
+    border-radius: 30px;
     overflow: hidden;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 /* Error Message Box */

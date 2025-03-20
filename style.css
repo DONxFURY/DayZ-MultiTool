@@ -44,10 +44,10 @@ button:hover {
 
 /* Monaco Editor Container - Adjusted size */
 #editorContainer {
-    width: 60%;                /* Adjust width to make it more square-like */
+    width: 30%;                /* Adjust width to make it more square-like */
     max-width: 1000px;         /* Max width to prevent it from getting too large */
-    height: 400px;             /* Adjusted height for better proportions */
-    border-radius: 10px;
+    height: 1000px;             /* Adjusted height for better proportions */
+    border-radius: 400px;
     overflow: hidden;
     margin-top: 20px;
     background-color: #282c34;

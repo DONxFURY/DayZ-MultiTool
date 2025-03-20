@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #1e1e1e;
+    color: white;
+}
+input {
+    margin: 20px;
+    padding: 10px;
+}
+pre {
+    background: #2d2d2d;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    text-align: left;
+    max-width: 80%;
+    margin: auto;
+}

@@ -45,7 +45,7 @@ button:hover {
 /* Monaco Editor Container - Fixing the size */
 #editorContainer {
     width: 80%;
-    height: 500px; /* Set a fixed height for the Monaco editor */
+    height: 1000px; /* Set a fixed height for the Monaco editor */
     border-radius: 10px;
     overflow: hidden;
     margin-top: 20px;

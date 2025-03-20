@@ -42,12 +42,12 @@ button:hover {
     background: #45a049;
 }
 
-/* Monaco Editor Container - Adjusted size */
+/* Monaco Editor Container - Improved size */
 #editorContainer {
-    width: 30%;                /* Adjust width to make it more square-like */
-    max-width: 1000px;         /* Max width to prevent it from getting too large */
-    height: 1000px;             /* Adjusted height for better proportions */
-    border-radius: 400px;
+    width: 80%;                /* 80% of the page width */
+    max-width: 900px;          /* Max width to prevent it from becoming too wide */
+    height: 400px;             /* Better height for the editor */
+    border-radius: 10px;
     overflow: hidden;
     margin-top: 20px;
     background-color: #282c34;

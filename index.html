@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DayZ Multi-Tool</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Monaco Editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js"></script>
 </head>
 <body>
     <h1>DayZ Multi-Tool</h1>
 
-    <!-- Background Image URL Input -->
-    <input type="text" id="bgInput" placeholder="https://imgur.com/0SUP1i6">
-    <button onclick="setBackground()">Set Background</button>
-
     <!-- File Upload -->
     <input type="file" id="fileInput">
-    
-    <!-- File Editor -->
-    <pre id="fileContent">Upload a file to edit...</pre>
+    <button id="saveButton">Save File</button>
+
+    <!-- Code Editor -->
+    <div id="editorContainer"></div>
+    <div id="errorContainer"></div>
 
     <script src="script.js"></script>
 </body>
